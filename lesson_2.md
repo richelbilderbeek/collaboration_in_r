@@ -21,7 +21,7 @@ cache: packages
 
 Lessen 2 of [collaboration_in_r](https://github.com/richelbilderbeek/collaboration_in_r).
 
-Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![Codecov logo](pics/Codecov.png)](https://www.codecov.io)
+Branch|[Travis](https://travis-ci.org)|[Codecov](https://www.codecov.io)
 ---|---|---
 `master` |[![Build Status](https://travis-ci.org/richelbilderbeek/cirtwo.svg?branch=master)](https://travis-ci.org/richelbilderbeek/cirtwo)|[![codecov.io](https://codecov.io/github/richelbilderbeek/cirtwo/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/cirtwo/branch/master)
 `develop`|[![Build Status](https://travis-ci.org/richelbilderbeek/cirtwo.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/cirtwo)|[![codecov.io](https://codecov.io/github/richelbilderbeek/cirtwo/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/cirtwo/branch/develop)
