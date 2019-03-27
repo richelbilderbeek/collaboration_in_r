@@ -219,19 +219,6 @@ test_that("abuse", {
 })
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Create `get_n_tips` 1: use
 
  * Difficulty: 2/10
@@ -249,3 +236,56 @@ Write the function and tests yourself.
 It should give a readable error if the user supplies incorrect input.
 
 Write the function and tests yourself.
+
+
+### Add @lintr-bot's guidance
+
+ * Difficulty: 2/10
+
+Add the following test to a file called `test-style.R` in the tests folder:
+
+```
+context("test-style")
+
+test_that("package style", {
+  lintr::expect_lint_free()
+})
+```
+
+### Create `calc_twice` 1: use
+
+ * Difficulty: 1/10
+
+`calc_twice` is a function to get twice the value put in.
+It should do what a user expects it to do.
+
+These are its tests:
+
+```r
+test_that("use", {
+
+  skip("calc_twice: use")
+  expect_equal(calc_twice(1), 2)
+  expect_equal(calc_twice(2), 4)
+  expect_equal(calc_twice(3), 6)
+})
+```
+
+### Create `calc_twice` 2: abuse
+
+ * Difficulty: 2/10
+
+`calc_twice` is a function to get twice the value put in.
+It should give a readable error if the user supplies incorrect input.
+
+These are its tests:
+
+```r
+test_that("abuse", {
+
+  skip("calc_twice: abuse")
+  expect_error(calc_twice("nonsense"), "'x' must be numeric")
+  expect_error(calc_twice(NA), "'x' must be numeric")
+  expect_error(calc_twice(NULL), "'x' must be numeric")
+})
+```
