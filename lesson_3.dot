@@ -1,0 +1,6 @@
+digraph G {
+calc_sum->calc_sum_r ;
+calc_sum->calc_sum_cpp ;
+is_perfect->calc_sum ;
+is_perfect->get_proper_divisors ;
+}

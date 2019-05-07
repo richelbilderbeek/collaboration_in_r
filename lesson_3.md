@@ -97,146 +97,6 @@ after_success:
   - Rscript -e "goodpractice::gp()"
 ```
 
-### Create `calc_squared` 1: use
-
- * Difficulty: 1/10
-
-`calc_squared` is a function that calculates the square of a number.
-It should do what a user expects it to do.
-
-These are its tests:
-
-```r
-test_that("use", {
-
-  skip("calc_squared: use")
-  expect_true(calc_squared(1) == 1)
-  expect_true(calc_squared(2) == 4)
-  expect_true(calc_squared(3) == 9)
-  expect_true(calc_squared(4) == 16)
-  expect_equal(calc_squared(c(2, 3)), c(4, 9))
-})
-```
-
-### Create `calc_squared` 2: abuse
-
- * Difficulty: 2/10
-
-`calc_squared` is a function that calculates the square of a number.
-It should give a readable error if the user supplies incorrect input.
-
-These are its tests:
-
-```r
-test_that("abuse", {
-
-  skip("calc_squared: abuse")
-  expect_error(calc_squared("nonsense"), "'x' must be numeric")
-  expect_error(calc_squared(NA), "'x' must be numeric")
-  expect_error(calc_squared(NULL), "'x' must be numeric")
-})
-```
-
-### Create `calc_cubed` 1: use
-
- * Difficulty: 1/10
-
-`calc_cubed` is a function that calculates the cube of a number.
-It should do what a user expects it to do.
-
-```r
-test_that("use", {
-
-  skip("calc_cubed: use")
-
-  expect_true(calc_cubed(1) == 1)
-  expect_true(calc_cubed(2) == 8)
-  expect_true(calc_cubed(3) == 27)
-  expect_true(calc_cubed(4) == 256)
-  expect_equal(calc_cubed(c(2, 3)), c(8, 27))
-})
-```
-
-### Create `calc_cubed` 2: abuse
-
- * Difficulty: 2/10
-
-`calc_cubed` is a function that calculates the cube of a number.
-It should give a readable error if the user supplies incorrect input.
-
-
-```r
-test_that("abuse", {
-
-  skip("calc_cubed: abuse")
-
-  expect_error(calc_cubed("nonsense"), "'x' must be numeric")
-  expect_error(calc_cubed(NA), "'x' must be numeric")
-  expect_error(calc_cubed(NULL), "'x' must be numeric")
-
-})
-```
-
-### Create `get_crown_age` 1: use
-
- * Difficulty: 2/10
-
-`get_crown_age` is to get the crown age of a phylogeny.
-It should do what a user expects it to do.
-
-```r
-test_that("use", {
-
-  skip("get_crown_age: use")
-  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  crown_age <- get_crown_age(phylogeny = phylogeny)
-  expect_equal(created, 2)
-
-  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-  crown_age <- get_crown_age(phylogeny = phylogeny)
-  expect_equal(created, 3)
-})
-```
-
-### Create `get_crown_age` 2: abuse
-
- * Difficulty: 2/10
-
-`get_crown_age` is to get the crown age of a phylogeny.
-It should give a readable error if the user supplies incorrect input.
-
-
-```r
-test_that("abuse", {
-
-  skip("get_crown_age: abuse")
-
-  expect_error(get_crown_age("?"), "'phylogeny' must be of class 'phylo'")
-  expect_error(get_crown_age(NA), "'phylogeny' must be of class 'phylo'")
-  expect_error(get_crown_age(NULL), "'phylogeny' must be of class 'phylo'")
-
-})
-```
-
-### Create `get_n_tips` 1: use
-
- * Difficulty: 2/10
-
-`get_n_tips` is to get the number of tips of a phylogeny.
-It should do what a user expects it to do.
-
-Write the function and tests yourself.
-
-### Create `get_n_tips` 2: abuse
-
- * Difficulty: 2/10
-
-`get_n_tips` is to get the number of tips of a phylogeny.
-It should give a readable error if the user supplies incorrect input.
-
-Write the function and tests yourself.
-
-
 ### Add @lintr-bot's guidance
 
  * Difficulty: 2/10
@@ -251,43 +111,9 @@ test_that("package style", {
 })
 ```
 
-### Create `calc_twice` 1: use
 
- * Difficulty: 1/10
 
-`calc_twice` is a function to get twice the value put in.
-It should do what a user expects it to do.
 
-These are its tests:
-
-```r
-test_that("use", {
-
-  skip("calc_twice: use")
-  expect_equal(calc_twice(1), 2)
-  expect_equal(calc_twice(2), 4)
-  expect_equal(calc_twice(3), 6)
-})
-```
-
-### Create `calc_twice` 2: abuse
-
- * Difficulty: 2/10
-
-`calc_twice` is a function to get twice the value put in.
-It should give a readable error if the user supplies incorrect input.
-
-These are its tests:
-
-```r
-test_that("abuse", {
-
-  skip("calc_twice: abuse")
-  expect_error(calc_twice("nonsense"), "'x' must be numeric")
-  expect_error(calc_twice(NA), "'x' must be numeric")
-  expect_error(calc_twice(NULL), "'x' must be numeric")
-})
-```
 
 
 
@@ -325,9 +151,244 @@ These are its tests:
 test_that("abuse", {
 
   skip("calc_sum_cpp: abuse")
-  expect_error(calc_sum_cpp("nonsense"), "'v' must be numeric")
-  expect_error(calc_sum_cpp(NA), "'v' must be numeric")
-  expect_error(calc_sum_cpp(NULL), "'v' must be numeric")
-  expect_error(calc_sum_cpp(c(1, "nonsense", 3)), "'v' must be numeric")
+  expect_error(calc_sum_cpp("nonsense"), "'values' must be numeric")
+  expect_error(calc_sum_cpp(NA), "'values' must be numeric")
+  expect_error(calc_sum_cpp(NULL), "'values' must be numeric")
+  expect_error(calc_sum_cpp(c(1, "nonsense", 3)), "'values' must be numeric")
+})
+```
+
+### Create `calc_sum_r` 1: use
+
+ * Difficulty: 2/10
+
+`calc_sum_r` is an R function to sum multiple values.
+
+These are its tests:
+
+```r
+test_that("use", {
+
+  skip("calc_sum_r: use")
+  expect_equal(calc_sum_r(c()), 0)
+  expect_equal(calc_sum_r(c(1)), 1)
+  expect_equal(calc_sum_r(c(1, 2)), 3)
+  expect_equal(calc_sum_r(c(1, 2, 3)), 6)
+})
+```
+
+### Create `calc_sum_r` 2: abuse
+
+ * Difficulty: 2/10
+
+`calc_sum_r` is n R function to sum multiple values.
+
+It should give a readable error if the user supplies incorrect input.
+
+These are its tests:
+
+```r
+test_that("abuse", {
+
+  skip("calc_sum_cpp: abuse")
+  expect_error(calc_sum_r("nonsense"), "'values' must be numeric")
+  expect_error(calc_sum_r(NA), "'values' must be numeric")
+  expect_error(calc_sum_r(NULL), "'values' must be numeric")
+  expect_error(calc_sum_r(c(1, "nonsense", 3)), "All values of 'values' must be numeric")
+})
+```
+
+### Create `calc_sum` 1: use
+
+ * Difficulty: 2/10
+
+`calc_sum` is a function to sum multiple values,
+which can run using C++ or R code.
+
+These are its tests:
+
+```r
+test_that("use", {
+
+  skip("calc_sum: use")
+  values <- c()
+  expect_equal(
+    calc_sum(values = values, language = "C++"),
+    calc_sum(values = values, language = "R")
+  )
+
+  values <- c(1)
+  expect_equal(
+    calc_sum(values = values, language = "C++"),
+    calc_sum(values = values, language = "R")
+  )
+
+  values <- c(1, 2)
+  expect_equal(
+    calc_sum(values = values, language = "C++"),
+    calc_sum(values = values, language = "R")
+  )
+
+  values <- c(1, 2, 3)
+  expect_equal(
+    calc_sum(values = values, language = "C++"),
+    calc_sum(values = values, language = "R")
+  )
+})
+```
+
+### Create `calc_sum` 2: abuse
+
+ * Difficulty: 2/10
+
+`calc_sum` is a function to sum multiple values,
+which can run using C++ or R code.
+
+It should give a readable error if the user supplies incorrect input.
+
+These are its tests:
+
+```r
+test_that("abuse", {
+
+  skip("calc_sum: abuse")
+  expect_error(calc_sum("nonsense", language = "C++"), "'values' must be numeric")
+  expect_error(calc_sum("nonsense", language = "R"), "'values' must be numeric")
+
+  expect_error(calc_sum(NA, language = "C++"), "'values' must be numeric")
+  expect_error(calc_sum(NA, language = "R"), "'values' must be numeric")
+
+  expect_error(calc_sum(NULL, language = "C++"), "'values' must be numeric")
+  expect_error(calc_sum(NULL, language = "R"), "'values' must be numeric")
+
+  expect_error(calc_sum(c(1, "nonsense", 3), language = "R"), "All values of 'values' must be numeric")
+  expect_error(calc_sum(c(1, "nonsense", 3), language = "C++"), "'values' must be numeric")
+})
+```
+
+
+
+
+
+
+
+
+### Create `get_proper_divisors` 1: use
+
+ * Difficulty: 2/10
+
+`get_proper_divisors` is a function to collect all proper divisors of a number
+in one vector. A proper divisor `p` of a number `n` is a value less than `n`, 
+for which `n % p == 0`.
+For example, 6 has proper divisors 1, 2, 3.
+
+It should do what a user expects it to do.
+
+These are its tests:
+
+```r
+test_that("use", {
+
+  skip("calc_squared: use")
+  expect_equal(get_proper_divisors(1), c())
+  expect_equal(get_proper_divisors(2), c(1))
+  expect_equal(get_proper_divisors(3), c(1))
+  expect_equal(get_proper_divisors(4), c(1, 2))
+  expect_equal(get_proper_divisors(5), c(1))
+  expect_equal(get_proper_divisors(6), c(1, 2, 3))
+  expect_equal(get_proper_divisors(7), c(1))
+  expect_equal(get_proper_divisors(8), c(1, 2, 4))
+  expect_equal(get_proper_divisors(9), c(1, 2, 3))
+
+})
+```
+
+### Create `get_proper_divisors` 2: abuse
+
+ * Difficulty: 2/10
+
+`get_proper_divisors` is a function to collect all proper divisors of a number
+in one vector. A proper divisor `p` of a number `n` is a value less than `n`, 
+for which `n % p == 0`.
+For example, 6 has proper divisors 1, 2, 3.
+
+It should give a readable error if the user supplies incorrect input.
+
+These are its tests:
+
+```r
+test_that("abuse", {
+
+  skip("calc_squared: abuse")
+  expect_error(get_proper_divisors("nonsense"), "'n' must be numeric")
+  expect_error(get_proper_divisors(NA), "'n' must be numeric")
+  expect_error(get_proper_divisors(NULL), "'n' must be numeric")
+  expect_error(get_proper_divisors(c(1, 2)), "'n' must be one numeric")
+  expect_error(get_proper_divisors(-1), "'n' must be non-zero positive")
+  expect_error(get_proper_divisors(0), "'n' must be non-zero positive")
+})
+```
+
+
+
+
+
+
+### Create `is_perfect` 1: use
+
+Depends on:
+
+ * [ ] `calc_sum`
+ * [ ] `get_proper_divisors`
+
+ * Difficulty: 1/10
+
+`is_perfect` is a function to determine if a number is a perfect number.
+A perfect number has the sum of its proper divisor equal to itself.
+For example, 6 has proper divisors 1, 2, 3. Because 1 + 2 + 3 == 6, 6 is
+a perfect number.
+
+:warning: Use `calc_sum` and `get_proper_divisors` to implement `is_perfect` :warning:
+
+```r
+test_that("use", {
+
+  skip("is_perfect: use")
+  expect_false(is_perfect(-1))
+  expect_false(is_perfect(0))
+  expect_false(is_perfect(1))
+  expect_false(is_perfect(2))
+  expect_false(is_perfect(4))
+  expect_true(is_perfect(6))
+  expect_false(is_perfect(10))
+  expect_false(is_perfect(16))
+  expect_true(is_perfect(24))
+})
+```
+
+### Create `is_perfect` 2: abuse
+
+Depends on:
+
+ * [ ] `calc_sum`
+ * [ ] `get_proper_divisors`
+
+ * Difficulty: 2/10
+
+`is_perfect` is a function to determine if a number is a perfect number.
+A perfect number has the sum of its proper divisor equal to itself.
+For example, 6 has proper divisors 1, 2, 3. Because 1 + 2 + 3 == 6, 6 is
+a perfect number.
+
+```r
+test_that("abuse", {
+
+  skip("is_perfect: abuse")
+
+  expect_error(is_perfect("nonsense"), "'x' must be numeric")
+  expect_error(is_perfect(NA), "'x' must be numeric")
+  expect_error(is_perfect(NULL), "'x' must be numeric")
+  expect_error(is_perfect(c(1, 2)), "'x' must be one numeric")
+
 })
 ```
