@@ -3,4 +3,8 @@ calc_sum->calc_sum_r ;
 calc_sum->calc_sum_cpp ;
 is_perfect->calc_sum ;
 is_perfect->get_proper_divisors ;
+is_abundant->calc_sum ;
+is_abundant->get_proper_divisors ;
+is_deficient->calc_sum ;
+is_deficient->get_proper_divisors ;
 }

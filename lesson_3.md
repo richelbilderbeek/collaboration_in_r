@@ -20,6 +20,8 @@ cache: packages
 
 Lessen 3 of [collaboration_in_r](https://github.com/richelbilderbeek/collaboration_in_r).
 
+![](lesson_3.png)
+
 Branch|[Travis](https://travis-ci.org)|[Codecov](https://www.codecov.io)
 ---|---|---
 `master` |[![Build Status](https://travis-ci.org/richelbilderbeek/cirthree.svg?branch=master)](https://travis-ci.org/richelbilderbeek/cirthree)|[![codecov.io](https://codecov.io/github/richelbilderbeek/cirthree/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/cirthree/branch/master)
@@ -111,13 +113,6 @@ test_that("package style", {
 })
 ```
 
-
-
-
-
-
-
-
 ### Create `calc_sum_cpp` 1: use
 
  * Difficulty: 2/10
@@ -200,6 +195,11 @@ test_that("abuse", {
 
 ### Create `calc_sum` 1: use
 
+Depends on:
+
+ * [ ] `calc_sum_cpp`
+ * [ ] `calc_sum_r`
+
  * Difficulty: 2/10
 
 `calc_sum` is a function to sum multiple values,
@@ -263,15 +263,13 @@ test_that("abuse", {
 
   expect_error(calc_sum(c(1, "nonsense", 3), language = "R"), "All values of 'values' must be numeric")
   expect_error(calc_sum(c(1, "nonsense", 3), language = "C++"), "'values' must be numeric")
+
+  expect_error(calc_sum(c(1, 2), language = "X"), "'language' must be 'C++' or 'R'")
+  expect_error(calc_sum(c(1, 2), language = NULL), "'language' must be 'C++' or 'R'")
+  expect_error(calc_sum(c(1, 2), language = NA), "'language' must be 'C++' or 'R'")
+  expect_error(calc_sum(c(1, 2), language = c()), "'language' must be 'C++' or 'R'")
 })
 ```
-
-
-
-
-
-
-
 
 ### Create `get_proper_divisors` 1: use
 
@@ -329,11 +327,6 @@ test_that("abuse", {
 })
 ```
 
-
-
-
-
-
 ### Create `is_perfect` 1: use
 
 Depends on:
@@ -350,6 +343,8 @@ a perfect number.
 
 :warning: Use `calc_sum` and `get_proper_divisors` to implement `is_perfect` :warning:
 
+Pick freely which of the two languages of `calc_sum` to use by default.
+
 ```r
 test_that("use", {
 
@@ -359,10 +354,15 @@ test_that("use", {
   expect_false(is_perfect(1))
   expect_false(is_perfect(2))
   expect_false(is_perfect(4))
+
   expect_true(is_perfect(6))
+  expect_true(is_perfect(6, language = "C++"))
+  expect_true(is_perfect(6, language = "R"))
+
   expect_false(is_perfect(10))
   expect_false(is_perfect(16))
   expect_true(is_perfect(24))
+
 })
 ```
 
@@ -380,6 +380,8 @@ A perfect number has the sum of its proper divisor equal to itself.
 For example, 6 has proper divisors 1, 2, 3. Because 1 + 2 + 3 == 6, 6 is
 a perfect number.
 
+It should give a readable error if the user supplies incorrect input.
+
 ```r
 test_that("abuse", {
 
@@ -389,6 +391,153 @@ test_that("abuse", {
   expect_error(is_perfect(NA), "'x' must be numeric")
   expect_error(is_perfect(NULL), "'x' must be numeric")
   expect_error(is_perfect(c(1, 2)), "'x' must be one numeric")
+
+})
+```
+
+
+
+
+
+
+
+### Create `is_abundant` 1: use
+
+Depends on:
+
+ * [ ] `calc_sum`
+ * [ ] `get_proper_divisors`
+
+ * Difficulty: 1/10
+
+`is_abundant` is a function to determine if a number is abundant number.
+A number is abundant if the sum of its proper divisor exceeds itself.
+For example, 24 is abundant, as its the proper divisors are 1, 2, 3, 4, 6, 8, and 12.
+The sum of these is 36. Because 36 is more than 24, the number is abundant.
+
+:warning: Use `calc_sum` and `get_proper_divisors` to implement `is_abundant` :warning:
+
+Pick freely which of the two languages of `calc_sum` to use by default.
+
+```r
+test_that("use", {
+
+  skip("is_abundant: use")
+  expect_false(is_abundant(-1))
+  expect_false(is_abundant(0))
+  expect_false(is_abundant(1))
+  expect_false(is_abundant(2))
+  expect_false(is_abundant(4))
+  expect_false(is_abundant(10))
+
+  expect_true(is_abundant(12))
+  expect_true(is_abundant(12, language = "C++"))
+  expect_true(is_abundant(12, language = "R"))
+
+  expect_false(is_abundant(16))
+  expect_true(is_abundant(18))
+  expect_false(is_abundant(32))
+  expect_true(is_abundant(36))
+})
+```
+
+### Create `is_abundant` 2: abuse
+
+Depends on:
+
+ * [ ] `calc_sum`
+ * [ ] `get_proper_divisors`
+
+ * Difficulty: 2/10
+
+`is_abundant` is a function to determine if a number is abundant number.
+A number is abundant if the sum of its proper divisor exceeds itself.
+For example, 24 is abundant, as its the proper divisors are 1, 2, 3, 4, 6, 8, and 12.
+The sum of these is 36. Because 36 is more than 24, the number is abundant.
+
+It should give a readable error if the user supplies incorrect input.
+
+```r
+test_that("abuse", {
+
+  skip("is_abundant: abuse")
+
+  expect_error(is_abundant("nonsense"), "'x' must be numeric")
+  expect_error(is_abundant(NA), "'x' must be numeric")
+  expect_error(is_abundant(NULL), "'x' must be numeric")
+  expect_error(is_abundant(c(1, 2)), "'x' must be one numeric")
+})
+```
+
+
+### Create `is_deficient` 1: use
+
+Depends on:
+
+ * [ ] `calc_sum`
+ * [ ] `get_proper_divisors`
+
+ * Difficulty: 1/10
+
+`is_deficient` is a function to determine if a number is deficient.
+A number is deficient if the sum of its proper divisor is less than itself.
+For example, 8 is deficient, as its the proper divisors are 1, 2, 4.
+The sum of these is 7. Because 7 is less than 8, the number is deficient.
+
+:warning: Use `calc_sum` and `get_proper_divisors` to implement `is_deficient` :warning:
+
+Pick freely which of the two languages of `calc_sum` to use by default.
+
+```r
+test_that("use", {
+
+  skip("is_deficient: use")
+
+  expect_false(is_deficient(-1))
+  expect_false(is_deficient(0))
+  expect_true(is_deficient(1))
+  expect_true(is_deficient(2))
+  expect_true(is_deficient(3))
+  expect_true(is_deficient(4))
+
+  expect_true(is_deficient(5))
+  expect_true(is_deficient(5, language = "C++"))
+  expect_true(is_deficient(5, language = "R"))
+
+  expect_true(is_deficient(7))
+  expect_true(is_deficient(8))
+  expect_false(is_deficient(12))
+  expect_false(is_deficient(18))
+  expect_true(is_deficient(19))
+
+})
+```
+
+### Create `is_deficient` 2: abuse
+
+Depends on:
+
+ * [ ] `calc_sum`
+ * [ ] `get_proper_divisors`
+
+ * Difficulty: 2/10
+
+`is_deficient` is a function to determine if a number is deficient.
+A number is deficient if the sum of its proper divisor is less than itself.
+For example, 8 is deficient, as its the proper divisors are 1, 2, 4.
+The sum of these is 7. Because 7 is less than 8, the number is deficient.
+
+It should give a readable error if the user supplies incorrect input.
+
+```r
+test_that("abuse", {
+
+  skip("is_deficient: abuse")
+
+  expect_error(is_deficient("nonsense"), "'x' must be numeric")
+  expect_error(is_deficient(NA), "'x' must be numeric")
+  expect_error(is_deficient(NULL), "'x' must be numeric")
+  expect_error(is_deficient(c(1, 2)), "'x' must be one numeric")
 
 })
 ```
